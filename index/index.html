@@ -3,6 +3,7 @@
 <!-- three.js library -->
 <script src='vendor/three.js/build/three.min.js'></script>
 <script src='vendor/three.js/examples/js/loaders/OBJLoader.js'></script>
+<script src='vendor/three.js/examples/js/loaders/MTLLoader.js'></script>
 <!-- ar.js -->
 <script src="../build/ar.js"></script>
 <script>THREEx.ArToolkitContext.baseURL = '../'</script>
@@ -146,6 +147,30 @@
 		// called when resource is loaded
 		function ( object ) {
 			scene.add( object );
+				// instantiate a loader
+			var loader = new THREE.MTLLoader();
+
+			// load a resource
+			loader.load(
+				// resource URL
+				'./objects/tree/ChristmasTree.mtl',
+				// called when resource is loaded
+				function ( material ) {
+					object.setMaterials( material );
+
+					onRenderFcts.push(function(delta){
+						object.rotation.x += Math.PI*delta
+					});
+				},
+				// called when loading is in progresses
+				function ( xhr ) {
+					console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+				},
+				// called when loading has errors
+				function ( error ) {
+					console.log( 'Error loading material' );
+				}
+			);
 		},
 		// called when loading is in progresses
 		function ( xhr ) {
@@ -153,13 +178,9 @@
 		},
 		// called when loading has errors
 		function ( error ) {
-			console.log( 'An error happened' );
+			console.log( 'Error loading object' );
 		}
 	);
-
-	// onRenderFcts.push(function(delta){
-	// 	mesh.rotation.x += Math.PI*delta
-	// })
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
