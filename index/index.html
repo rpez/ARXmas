@@ -147,6 +147,11 @@
 		// called when resource is loaded
 		function ( object ) {
 			console.log( 'Success loading object' );
+
+			onRenderFcts.push(function(delta){
+				object.rotation.x += Math.PI*delta
+			});
+
 			scene.add( object );
 		},
 		// called when loading is in progresses
@@ -180,10 +185,6 @@
 			console.log( 'Error loading material' );
 		}
 	);
-
-	onRenderFcts.push(function(delta){
-		object.rotation.x += Math.PI*delta
-	});
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
