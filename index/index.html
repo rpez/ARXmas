@@ -148,9 +148,13 @@
 		function ( object ) {
 			console.log( 'Success loading object' );
 
-			onRenderFcts.push(function(delta){
-				object.rotation.x += Math.PI*delta
-			});
+			// rotate object
+			// onRenderFcts.push(function(delta){
+			// 	object.rotation.x += Math.PI*delta
+			// });
+			
+			// change scale
+			object.scale.set(0.1, 0.1, 0.1)
 
 			scene.add( object );
 		},
