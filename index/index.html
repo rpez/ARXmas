@@ -137,6 +137,9 @@
 	// mesh.position.y	= 0.5
 	// scene.add( mesh );
 
+	var ambientlight = new THREE.AmbientLight( 0xffffff, 5 );
+	scene.add(ambientlight);
+
 	// instantiate a loader
 	var loader = new THREE.OBJLoader();
 
