@@ -137,33 +137,11 @@
 	// mesh.position.y	= 0.5
 	// scene.add( mesh );
 
-	var ambientlight = new THREE.AmbientLight( 0x404040 );
+	var ambientlight = new THREE.AmbientLight( 0x888888 );
 	scene.add(ambientlight);
 
 	// instantiate a loader
 	var loader = new THREE.OBJLoader();
-
-	// instantiate a loader
-	var mtlloader = new THREE.MTLLoader();
-
-	// load a resource
-	mtlloader.load(
-		// resource URL
-		'./objects/Lahjapaketti.mtl',
-		// called when resource is loaded
-		function ( material ) {
-			console.log( 'Success loading material' );
-			loader.setMaterials( material );
-		},
-		// called when loading is in progresses
-		function ( xhr ) {
-			console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-		},
-		// called when loading has errors
-		function ( error ) {
-			console.log( 'Error loading material' );
-		}
-	);
 
 	// load a resource
 	loader.load(
@@ -190,6 +168,28 @@
 		// called when loading has errors
 		function ( error ) {
 			console.log( 'Error loading object' );
+		}
+	);
+
+	// instantiate a loader
+	var mtlloader = new THREE.MTLLoader();
+
+	// load a resource
+	mtlloader.load(
+		// resource URL
+		'./objects/Lahjapaketti.mtl',
+		// called when resource is loaded
+		function ( material ) {
+			console.log( 'Success loading material' );
+			loader.setMaterials( material );
+		},
+		// called when loading is in progresses
+		function ( xhr ) {
+			console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+		},
+		// called when loading has errors
+		function ( error ) {
+			console.log( 'Error loading material' );
 		}
 	);
 
