@@ -174,28 +174,31 @@
 		}
 	);
 
-	// instantiate a loader
-	var mtlloader = new THREE.MTLLoader();
+	var material	= new THREE.MeshNormalMaterial();
+	loader.setMaterials( material );
 
-	// load a resource
-	mtlloader.load(
-		// resource URL
-		'./objects/Pyramid.mtl',
-		// './objects/tree/ChristmasTree.mtl',
-		// called when resource is loaded
-		function ( material ) {
-			console.log( 'Success loading material' );
-			loader.setMaterials( material );
-		},
-		// called when loading is in progresses
-		function ( xhr ) {
-			console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-		},
-		// called when loading has errors
-		function ( error ) {
-			console.log( 'Error loading material' );
-		}
-	);
+	// // instantiate a loader
+	// var mtlloader = new THREE.MTLLoader();
+
+	// // load a resource
+	// mtlloader.load(
+	// 	// resource URL
+	// 	'./objects/Pyramid.mtl',
+	// 	// './objects/tree/ChristmasTree.mtl',
+	// 	// called when resource is loaded
+	// 	function ( material ) {
+	// 		console.log( 'Success loading material' );
+	// 		loader.setMaterials( material );
+	// 	},
+	// 	// called when loading is in progresses
+	// 	function ( xhr ) {
+	// 		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+	// 	},
+	// 	// called when loading has errors
+	// 	function ( error ) {
+	// 		console.log( 'Error loading material' );
+	// 	}
+	// );
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
