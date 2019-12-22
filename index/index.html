@@ -157,8 +157,10 @@
 			
 			// change scale
 			object.scale.set(0.02, 0.02, 0.02)
+			var material	= new THREE.MeshNormalMaterial();
+			var mesh	= new THREE.Mesh( object, material );
 
-			scene.add( object );
+			scene.add( mesh );
 
 			// var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
 			// directionalLight.target = object;
@@ -173,9 +175,6 @@
 			console.log( 'Error loading object' );
 		}
 	);
-
-	var material	= new THREE.MeshNormalMaterial();
-	loader.setMaterials( material );
 
 	// // instantiate a loader
 	// var mtlloader = new THREE.MTLLoader();
