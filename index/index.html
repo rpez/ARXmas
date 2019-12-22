@@ -4,6 +4,7 @@
 <script src='vendor/three.js/build/three.min.js'></script>
 <script src='vendor/three.js/examples/js/loaders/OBJLoader.js'></script>
 <script src='vendor/three.js/examples/js/loaders/MTLLoader.js'></script>
+<script src='vendor/three.js/examples/js/loaders/DDSLoader.js'></script>
 <!-- ar.js -->
 <script src="../build/ar.js"></script>
 <script>THREEx.ArToolkitContext.baseURL = '../'</script>
@@ -135,50 +136,83 @@
 	// mesh.position.y	= 0.5
 	// scene.add( mesh );
 
+	var onProgress = function ( xhr ) {
+		if ( xhr.lengthComputable ) {
+			var percentComplete = xhr.loaded / xhr.total * 100;
+			console.log( Math.round( percentComplete, 2 ) + '% downloaded' );
+		}
+	};
+
+	var onError = function () {
+		console.log("An error occured");
+	};
+
+	var manager = new THREE.LoadingManager();
+	// manager.addHandler( '/\.dds$/i', new THREE.DDSLoader() );
+	// comment in the following line and import TGALoader if your asset uses TGA textures
+	// manager.addHandler( /\.tga$/i, new TGALoader() );
+
+	new THREE.MTLLoader( manager )
+		.setPath( './objects/' )
+		.load( 'Lahjapaketti.mtl', function ( materials ) {
+			materials.preload();
+			new THREE.OBJLoader( manager )
+				.setMaterials( materials )
+				.setPath( './objects/' )
+				.load( 'Lahjapaketti.obj', function ( object ) {
+					object.position.y = - 95;
+					scene.add( object );
+				}, onProgress, onError );
+		});
+
+
+
+
+
 	// var ambientlight = new THREE.AmbientLight( 0xfdfbd3 );
 	// scene.add(ambientlight);
 
-	// instantiate a loader
-	var loader = new THREE.OBJLoader();
+	// // instantiate a loader
+	// var loader = new THREE.OBJLoader();
 
-	// load a resource
-	loader.load(
-		// resource URL
-		'./objects/Lahjapaketti.obj',
-		// './objects/tree/ChristmasTree.obj',
-		// called when resource is loaded
-		function ( object ) {
-			console.log( 'Success loading object' );
+	// // load a resource
+	// loader.load(
+	// 	// resource URL
+	// 	'./objects/Lahjapaketti.obj',
+	// 	// './objects/tree/ChristmasTree.obj',
+	// 	// called when resource is loaded
+	// 	function ( object ) {
+	// 		console.log( 'Success loading object' );
 
-			// rotate object
-			// onRenderFcts.push(function(delta){
-			// 	object.rotation.x += Math.PI*delta
-			// });
+	// 		// rotate object
+	// 		// onRenderFcts.push(function(delta){
+	// 		// 	object.rotation.x += Math.PI*delta
+	// 		// });
 			
-			// change scale
-			object.scale.set(0.02, 0.02, 0.02)
+	// 		// change scale
+	// 		object.scale.set(0.02, 0.02, 0.02)
 
-			scene.add( object );
+	// 		scene.add( object );
 
-			var geometry	= new THREE.TorusKnotGeometry(0.3,0.1,64,16);
-			var material	= new THREE.MeshNormalMaterial();
-			var mesh	= new THREE.Mesh( geometry, material );
-			mesh.position.y	= 0.5
-			scene.add( mesh );
+	// 		var geometry	= new THREE.TorusKnotGeometry(0.3,0.1,64,16);
+	// 		var material	= new THREE.MeshNormalMaterial();
+	// 		var mesh	= new THREE.Mesh( geometry, material );
+	// 		mesh.position.y	= 0.5
+	// 		scene.add( mesh );
 
-			// var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
-			// directionalLight.target = object;
-			// scene.add( directionalLight );
-		},
-		// called when loading is in progresses
-		function ( xhr ) {
-			console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-		},
-		// called when loading has errors
-		function ( error ) {
-			console.log( 'Error loading object' );
-		}
-	);
+	// 		// var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
+	// 		// directionalLight.target = object;
+	// 		// scene.add( directionalLight );
+	// 	},
+	// 	// called when loading is in progresses
+	// 	function ( xhr ) {
+	// 		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+	// 	},
+	// 	// called when loading has errors
+	// 	function ( error ) {
+	// 		console.log( 'Error loading object' );
+	// 	}
+	// );
 
 	// // instantiate a loader
 	// var mtlloader = new THREE.MTLLoader();
@@ -202,6 +236,11 @@
 	// 		console.log( 'Error loading material' );
 	// 	}
 	// );
+
+
+
+
+
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
