@@ -160,6 +160,12 @@
 
 			scene.add( object );
 
+			var geometry	= new THREE.TorusKnotGeometry(0.3,0.1,64,16);
+			var material	= new THREE.MeshNormalMaterial();
+			var mesh	= new THREE.Mesh( geometry, material );
+			mesh.position.y	= 0.5
+			scene.add( mesh );
+
 			// var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
 			// directionalLight.target = object;
 			// scene.add( directionalLight );
@@ -174,28 +180,28 @@
 		}
 	);
 
-	// instantiate a loader
-	var mtlloader = new THREE.MTLLoader();
+	// // instantiate a loader
+	// var mtlloader = new THREE.MTLLoader();
 
-	// load a resource
-	mtlloader.load(
-		// resource URL
-		'./objects/Lahjapaketti.mtl',
-		// './objects/tree/ChristmasTree.mtl',
-		// called when resource is loaded
-		function ( material ) {
-			console.log( 'Success loading material' );
-			loader.setMaterials( material );
-		},
-		// called when loading is in progresses
-		function ( xhr ) {
-			console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-		},
-		// called when loading has errors
-		function ( error ) {
-			console.log( 'Error loading material' );
-		}
-	);
+	// // load a resource
+	// mtlloader.load(
+	// 	// resource URL
+	// 	'./objects/Lahjapaketti.mtl',
+	// 	// './objects/tree/ChristmasTree.mtl',
+	// 	// called when resource is loaded
+	// 	function ( material ) {
+	// 		console.log( 'Success loading material' );
+	// 		loader.setMaterials( material );
+	// 	},
+	// 	// called when loading is in progresses
+	// 	function ( xhr ) {
+	// 		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+	// 	},
+	// 	// called when loading has errors
+	// 	function ( error ) {
+	// 		console.log( 'Error loading material' );
+	// 	}
+	// );
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
