@@ -5,6 +5,7 @@
 <script src='vendor/three.js/examples/js/loaders/OBJLoader.js'></script>
 <script src='vendor/three.js/examples/js/loaders/MTLLoader.js'></script>
 <script src='vendor/three.js/examples/js/loaders/DDSLoader.js'></script>
+<script src='vendor/three.js/examples/js/loaders/LoadingManager.js'></script>
 <!-- ar.js -->
 <script src="../build/ar.js"></script>
 <script>THREEx.ArToolkitContext.baseURL = '../'</script>
@@ -148,7 +149,7 @@
 	};
 
 	var manager = new THREE.LoadingManager();
-	// manager.addHandler( '/\.dds$/i', new THREE.DDSLoader() );
+	manager.addHandler( /\.dds$/i, new THREE.DDSLoader() );
 	// comment in the following line and import TGALoader if your asset uses TGA textures
 	// manager.addHandler( /\.tga$/i, new TGALoader() );
 
