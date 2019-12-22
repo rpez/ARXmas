@@ -146,7 +146,7 @@
 	// load a resource
 	loader.load(
 		// resource URL
-		'./objects/tree/ChristmasTree.obj',
+		'./objects/Lahjapaketti.obj',
 		// called when resource is loaded
 		function ( object ) {
 			console.log( 'Success loading object' );
@@ -171,27 +171,27 @@
 		}
 	);
 
-	// instantiate a loader
-	var mtlloader = new THREE.MTLLoader();
+	// // instantiate a loader
+	// var mtlloader = new THREE.MTLLoader();
 
-	// load a resource
-	mtlloader.load(
-		// resource URL
-		'./objects/tree/ChristmasTree.mtl',
-		// called when resource is loaded
-		function ( material ) {
-			console.log( 'Success loading material' );
-			loader.setMaterials( material );
-		},
-		// called when loading is in progresses
-		function ( xhr ) {
-			console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-		},
-		// called when loading has errors
-		function ( error ) {
-			console.log( 'Error loading material' );
-		}
-	);
+	// // load a resource
+	// mtlloader.load(
+	// 	// resource URL
+	// 	'./objects/tree/ChristmasTree.mtl',
+	// 	// called when resource is loaded
+	// 	function ( material ) {
+	// 		console.log( 'Success loading material' );
+	// 		loader.setMaterials( material );
+	// 	},
+	// 	// called when loading is in progresses
+	// 	function ( xhr ) {
+	// 		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+	// 	},
+	// 	// called when loading has errors
+	// 	function ( error ) {
+	// 		console.log( 'Error loading material' );
+	// 	}
+	// );
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
